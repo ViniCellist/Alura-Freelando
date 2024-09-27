@@ -1,5 +1,7 @@
-import styled from '@emotion/styled';
-import { useState } from "react";
+import styled from "@emotion/styled"
+import { useState } from "react"
+import { ItemListaSuspensaEstilizado } from "./ItemListaSuspensaEstilizado"
+import { ListaSuspensaEstilizada } from "./ListaSuspensaEstilizada"
 
 const LabelEstilizada = styled.label`
     display: block;
@@ -9,7 +11,8 @@ const LabelEstilizada = styled.label`
     font-size: 20px;
     line-height: 24px;
     position: relative;
-`;
+
+`
 
 const BotaoEstilizado = styled.button`
     cursor: pointer;
@@ -24,8 +27,8 @@ const BotaoEstilizado = styled.button`
     justify-content: space-between;
     font-weight: 400;
     border-radius: 18px;
-    border-bottom-left-radius: ${props => props.estarAberta ? '0' : '18px'};
-    border-bottom-right-radius: ${props => props.estarAberta ? '0' : '18px'};
+    border-bottom-left-radius: ${props => props.estaAberta ? '0' : '18px'};
+    border-bottom-right-radius: ${props => props.estaAberta ? '0' : '18px'};
     margin-top: ${props => props.theme.espacamentos.xs};
     padding: ${props => props.theme.espacamentos.s};
     background: ${props => props.theme.cores.branco};
@@ -33,14 +36,15 @@ const BotaoEstilizado = styled.button`
     &:focus {
         border-color: ${props => props.theme.cores.focus};
     }
-`;
+`
 
-export const ListaSuspensa = ({titulo, opcoes}) => {
-    const [estarAberta, alternarVisibilidade] = useState(false);
+export const ListaSupensa = ({ titulo, opcoes }) => {
+    const [estaAberta, alternarVisibilidade] = useState(false)
+
     const [opcaoFocada, setOpcaoFocada] = useState(null);
     const [opcaoSelecionada, setOpcaoSelecionada] = useState(null);
 
-    const manipularTecladDoTeclado = (evento) => {
+    const manipularTeclaDoTeclado = (evento) => {
         alternarVisibilidade(true)
         switch (evento.key) {
             case 'ArrowDown':
@@ -49,57 +53,63 @@ export const ListaSuspensa = ({titulo, opcoes}) => {
                     if (focoAntigo == null) {
                         return 0;
                     }
-
-                    return focoAntigo += 1;
-                });
+                    if (focoAntigo === (opcoes.length - 1)) {
+                        return opcoes.length - 1
+                    }
+                    return focoAntigo += 1
+                })
                 break;
-                
             case 'ArrowUp':
                 evento.preventDefault();
                 setOpcaoFocada(focoAntigo => {
                     if (!focoAntigo) {
                         return 0;
                     }
-
-                    return focoAntigo -= 1;
-                });
+                    return focoAntigo -= 1
+                })
                 break;
-
                 case 'Enter':
                     evento.preventDefault();
-                    setOpcaoFocada(null);
-                    alternarVisibilidade(false);
-                    setOpcaoSelecionada(opcoes[opcaoFocada]);
+                    setOpcaoFocada(null)
+                    alternarVisibilidade(false)
+                    setOpcaoSelecionada(opcoes[opcaoFocada])
+                    break;
+                case 'Tab':
+                    setOpcaoFocada(null)
+                    alternarVisibilidade(false)
+                    break;
+                case 'Escape':
+                    evento.preventDefault();
+                    setOpcaoFocada(null)
+                    alternarVisibilidade(false)
                     break;
             default:
                 break;
         }
     }
 
-    return (
-        <LabelEstilizada>
-            {titulo}
-            <BotaoEstilizado
-                estarAberta={estarAberta} 
-                onClick={() => alternarVisibilidade(!estarAberta)}
-                onKeyDown={manipularTecladDoTeclado}
-            >
-                <div>
-                    {opcaoSelecionada ? opcaoSelecionada.text : 'Selecione'}
-                </div>
-                <div>
-                    <span>{estarAberta ? '▲' : '▼'}</span>
-                </div>
-            </BotaoEstilizado>
-            {estarAberta && <ul>
-                {opcoes.map((opcao, index) => <li 
-                    key={opcao.value}
-                    focoAtivo={index === opcaoFocada}
-                    onClick={() => setOpcaoSelecionada(opcao)}
+    return (<LabelEstilizada>
+        {titulo}
+        <BotaoEstilizado
+             estaAberta={estaAberta}
+             onClick={() => alternarVisibilidade(!estaAberta)}
+             onKeyDown={manipularTeclaDoTeclado}
+        >
+            <div>
+                { opcaoSelecionada ? opcaoSelecionada.text : 'Selecione' } 
+            </div>
+            <div>
+                <span>{estaAberta ? '▲' : '▼'}</span>
+            </div>
+        </BotaoEstilizado>
+        {estaAberta && <ListaSuspensaEstilizada>
+            {opcoes.map((opcao, index) => <ItemListaSuspensaEstilizado
+                key={opcao.value}
+                focoAtivo={index === opcaoFocada}
+                onClick={() => setOpcaoSelecionada(opcao)}
                 >
-                    {opcao.text}
-                </li>)}
-            </ul>}
-        </LabelEstilizada>
-    );
-};
+                {opcao.text}
+            </ItemListaSuspensaEstilizado>)}
+        </ListaSuspensaEstilizada>}
+    </LabelEstilizada>)
+}
