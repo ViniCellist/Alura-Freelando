@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const ItemListaSuspensaEstilizada = styled.li`
     padding: ${props => props.theme.espacamentos.xs} 0;
     text-align: center;
-    border-bottom: 1px solid ${props => props.theme.cores.neutas.c};
+    border-bottom: 1px solid ${props => props.theme.cores.neutras.c};
     cursor: pointer;
     &:last-child {
         border: none;
