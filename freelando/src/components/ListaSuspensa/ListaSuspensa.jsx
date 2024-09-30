@@ -1,7 +1,8 @@
-import styled from "@emotion/styled"
+import styled from '@emotion/styled';
 import { useState } from "react"
-import { ItemListaSuspensaEstilizado } from "./ItemListaSuspensaEstilizado"
-import { ListaSuspensaEstilizada } from "./ListaSuspensaEstilizada"
+import { ItemListaSuspensaEstilizada } from "./ItemListaSuspensaEstilizada"
+import { ListaSuspensaEstilizada } from './ListaSuspensaEstilizada';
+
 
 const LabelEstilizada = styled.label`
     display: block;
@@ -103,13 +104,13 @@ export const ListaSupensa = ({ titulo, opcoes }) => {
             </div>
         </BotaoEstilizado>
         {estaAberta && <ListaSuspensaEstilizada>
-            {opcoes.map((opcao, index) => <ItemListaSuspensaEstilizado
+            {opcoes.map((opcao, index) => <ItemListaSuspensaEstilizada
                 key={opcao.value}
                 focoAtivo={index === opcaoFocada}
                 onClick={() => setOpcaoSelecionada(opcao)}
                 >
                 {opcao.text}
-            </ItemListaSuspensaEstilizado>)}
+            </ItemListaSuspensaEstilizada>)}
         </ListaSuspensaEstilizada>}
     </LabelEstilizada>)
 }

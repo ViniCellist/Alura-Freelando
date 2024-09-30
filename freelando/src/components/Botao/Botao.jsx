@@ -1,4 +1,4 @@
-import styled from '@emotion/react';
+import styled from '@emotion/styled';
 
 const BotaoPrimarioEstilizado = styled.button`
     background: ${props => props.theme.cores.primarias.b};

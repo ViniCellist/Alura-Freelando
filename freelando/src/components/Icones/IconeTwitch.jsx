@@ -1,4 +1,4 @@
-export const IconeInstagram = () => {
+export const IconeTwitch = () => {
     return (
         <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M22.8099 8.41992C22.0299 8.41992 21.3999 9.04992 21.3999 9.82992C21.3999 10.6099 22.0299 11.2399 22.8099 11.2399C23.5899 11.2399 24.2199 10.6099 24.2199 9.82992C24.2199 9.04992 23.5899 8.41992 22.8099 8.41992Z" fill="#F5F5F5" />
