@@ -10,7 +10,6 @@ const componentes = {
     body2Bold: 'strong',
     legenda: 'p'
 }
-
 const estilos = {
     h1: `
         font-weight: 600;
