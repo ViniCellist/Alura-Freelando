@@ -15,13 +15,13 @@ const SelecaoCliente = () => {
             </Tipografia>
             <Row>
                 <Col md={6} sm={12}>
-                    <img src={cliente} />
+                    <img src={cliente} alt="Imagem que presenta o cliente" />
                     <Tipografia variante="body" componente="body" >
                         Sou cliente e preciso de um freela!
                     </Tipografia>
                 </Col>
                 <Col md={6} sm={12}>
-                    <img src={freelancer} />
+                    <img src={freelancer} alt="Imagem que representa o freelancer" />
                     <Tipografia variante="body" componente="body" >
                         Sou freela e preciso de cliente!
                     </Tipografia>
