@@ -1,6 +1,9 @@
-import { useState } from "react";
-import { Tipografia } from "../../components/Tipografia/Tipografia";
+import { useState } from "react"
+import { Col, Row } from "react-grid-system"
+import { Link } from "react-router-dom"
+import { Tipografia } from "../../components/Tipografia/Tipografia"
 import GrupoRadio from './../../components/Radio/GrupoRadio';
+import { Botao } from "../../components/Botao/Botao";
 
 const opcoes = [
     {
@@ -9,44 +12,57 @@ const opcoes = [
     },
     {
         valor: 2,
-        label: "Design e Multimídia",
+        label: 'Design e Multimídia',
     },
     {
         valor: 3,
-        label: "Revisão",
+        label: 'Revisão',
     },
     {
         valor: 4,
-        label: "Tradução",
+        label: 'Tradução',
     },
     {
         valor: 5,
-        label: "Transcrição",
+        label: 'Transcrição',
     },
     {
         valor: 6,
-        label: "Marketing",
-    }
+        label: 'Marketing',
+    },
 ]
 
 const Interesses = () => {
-    const [opcao, setOpcao] = useState("");
 
-    return (
-        <div style={{textAlign: "center"}}>
-            <Tipografia variante="h1" componente="h1">
-              Crie seu cadastro
-            </Tipografia>
-            <GrupoRadio 
-                opcoes={opcoes}
-                valor={opcao}
-                onChange={setOpcao}
-            />
-            <Tipografia variante="h3" componente="h2">
-              Qual a área de interesse?
-            </Tipografia>
-        </div>
-    );
+    const [opcao, setOpcao] = useState('')
+
+    return (<div style={{ textAlign: 'center' }}>
+        <Tipografia variante="h1" componente="h1">
+            Crie seu cadastro
+        </Tipografia>
+        <Tipografia variante='h3' componente='h2'>
+            Qual a área de interesse?
+        </Tipografia>
+        <GrupoRadio opcoes={opcoes} valor={opcao} onChange={setOpcao} />
+        <Row>
+            <Col lg={6} md={6} sm={6}>
+                <Link to="/cadastro">
+                    <Botao variante="secundaria">
+                        Anterior
+                    </Botao>
+                </Link>
+            </Col>
+            <Col lg={6} md={6} sm={6}>
+                <div style={{ textAlign: 'right' }}>
+                    <Link to='/cadastro/dados-pessoais'>
+                        <Botao>
+                            Próxima
+                        </Botao>
+                    </Link>
+                </div>
+            </Col>
+        </Row>
+    </div>)
 }
 
-export default Interesses;
+export default Interesses
