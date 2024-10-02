@@ -10,7 +10,7 @@ const LabelEstilizada = styled.label`
     padding: ${props => props.theme.espacamentos.xs};
     &:hover {
         &:before {
-            border-color: ${props => props.theme.cores.focus};
+            border-color: ${props => (props.theme.cores.focus)};
         }
     }
     &:before {
@@ -27,10 +27,10 @@ const LabelEstilizada = styled.label`
         cursor: pointer;
         background-color: ${props => (props.checked 
             ? props.theme.cores.primarias.b 
-            : props.theme.cores.neutas.c)
-        };
-        border-color: ${props => (props.checked
-            ? props.theme.cores.primarias.b
+            : props.theme.cores.neutras.c
+        )};
+        border-color: ${props => (props.checked 
+            ? props.theme.cores.primarias.b 
             : 'inherit'
         )};
     }
@@ -44,25 +44,24 @@ const InputEscondido = styled.input`
         border: 1px solid;
         border-color: ${props => props.theme.cores.focus};
     }
-`;
+`
 
-const Radio = ({valor, label, checked, onClick}) => {
+const Radio = ({ valor, label, checked, onClick }) => (
     <>
         <InputEscondido 
-            type="radio"
-            valor={valor}
-            checked={checked}
-            onChange={onClick}
+            type="radio" 
+            valor={valor} 
+            checked={checked} 
+            onChange={onClick} 
             id={`radio-customizado-${valor}`}
         />
-        <LabelEstilizada
-            htmlFor={`radio-customizado-${valor}`}
+        <LabelEstilizada 
+            htmlFor={`radio-customizado-${valor}`} 
             checked={checked}
         >
             {label}
         </LabelEstilizada>
-
     </>
-}
+);
 
 export default Radio;
