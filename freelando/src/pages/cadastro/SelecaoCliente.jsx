@@ -4,8 +4,12 @@ import cliente from './assets/cliente.png';
 import freelancer from './assets/freela.png';
 import { Link } from '../../components/Link/Link';
 import { Link as RouterLink } from 'react-router-dom'
+import { useCadastroUsuarioContext } from "../../context/CadastroUsuario";
 
 const SelecaoCliente = () => {
+
+    const { setPerfil } = useCadastroUsuarioContext()
+
     return (
         <div style={{textAlign: "center"}}>
             <Tipografia variante="h1" componente="h1">
@@ -16,7 +20,10 @@ const SelecaoCliente = () => {
             </Tipografia>
             <Row>
                 <Col md={6} sm={12}>
-                    <RouterLink to="interesses">
+                    <RouterLink 
+                        to="interesses" 
+                        onClick={() => setPerfil('cliente')}
+                    >
                         <img src={cliente} alt="Imagem que presenta o cliente" />
                         <Tipografia variante="body" componente="body" >
                             Sou cliente e preciso de um freela!
